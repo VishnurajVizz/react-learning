@@ -1,6 +1,7 @@
 import logo from "../../assets/logo.png";
-import styles from "./Header.module.css"
-export default function Header() {
+import styles from "./Header.module.css";
+export default function Header({ dummy }) {
+  console.log(dummy);
   return (
     <header>
       <img src={logo} alt="A canvas" />
@@ -9,5 +10,4 @@ export default function Header() {
     </header>
   );
 }
-
 
