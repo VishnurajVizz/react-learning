@@ -1,30 +1,30 @@
 import React, { useState } from "react";
 
-export default function GameBoard({ handleActivePlayer, activePlayer }) {
-  let gameHistory = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null],
-  ];
-  const [move, setMove] = useState(gameHistory);
+let initialBoard = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null],
+];
 
-  function handlePlayerMove(rowIdx, colIdx) {
-    setMove((prevMoves) => {
-      const updatedBoard = [...prevMoves.map((innerArray) => [...innerArray])]; // creating a deep copy then updating
-      updatedBoard[rowIdx][colIdx] = activePlayer;
-      return updatedBoard;
-    });
-    handleActivePlayer();
+export default function GameBoard({ handleActivePlayer, turns }) {
+  let gameBoard = initialBoard;
+  for (const turn of turns) {
+    const { movePos, player } = turn;
+    const { row, col } = movePos;
+    gameBoard[row][col] = player;
   }
 
   return (
     <ol id="game-board">
-      {move.map((row, rowIdx) => (
+      {gameBoard.map((row, rowIdx) => (
         <li key={rowIdx}>
           <ol>
             {row.map((playerMove, colIdx) => (
               <li key={colIdx}>
-                <button onClick={() => handlePlayerMove(rowIdx, colIdx)} disabled={playerMove&&true}>
+                <button
+                  onClick={() => handleActivePlayer(rowIdx, colIdx)}
+                  disabled={playerMove && true}
+                >
                   {playerMove}
                 </button>
               </li>

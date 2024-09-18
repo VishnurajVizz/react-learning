@@ -1,12 +1,31 @@
 import React, { useState } from "react";
 import Player from "./components/Player";
 import GameBoard from "./components/GameBoard";
+import Log from "./components/Log";
+
+function findCurrentPlayer(turns) {
+  let currentPlayer = "X";
+  if (turns.length > 0 && turns[0].player === "X") {
+    currentPlayer = "O";
+  }
+  return currentPlayer;
+}
 
 function App() {
-  const [activePlayer, setActivePlayer] = useState("X");
+  const [gameTurns, setGameTurns] = useState([]);
 
-  function handleActivePlayer() {
-    setActivePlayer((prevPlayer) => (prevPlayer === "X" ? "O" : "X"));
+  const activePlayer = findCurrentPlayer(gameTurns);
+
+  function handleActivePlayer(rowIdx, colIdx) {
+    setGameTurns((prev) => {
+      // Not getting current player value from state because it won't be updated yet.
+      let currentPlayer = findCurrentPlayer(prev);
+      let updatedGameTurns = [
+        { movePos: { row: rowIdx, col: colIdx }, player: currentPlayer },
+        ...prev,
+      ];
+      return updatedGameTurns;
+    });
   }
 
   return (
@@ -31,10 +50,10 @@ function App() {
           </ol>
           <GameBoard
             handleActivePlayer={handleActivePlayer}
-            activePlayer={activePlayer}
+            turns={gameTurns}
           />
         </div>
-        LOG
+        <Log history={gameTurns} />
       </main>
     </>
   );
