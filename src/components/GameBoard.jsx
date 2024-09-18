@@ -1,19 +1,6 @@
 import React, { useState } from "react";
 
-let initialBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-
-export default function GameBoard({ handleActivePlayer, turns }) {
-  let gameBoard = initialBoard;
-  for (const turn of turns) {
-    const { movePos, player } = turn;
-    const { row, col } = movePos;
-    gameBoard[row][col] = player;
-  }
-
+export default function GameBoard({ handleActivePlayer, gameBoard }) {
   return (
     <ol id="game-board">
       {gameBoard.map((row, rowIdx) => (

@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
-export default function Player({ pName = "", symbol,isActive }) {
+export default function Player({ pName, symbol, isActive, handlePlayerNames }) {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(pName);
   let playerName = <span className="player-name">{name}</span>;
@@ -18,7 +18,7 @@ export default function Player({ pName = "", symbol,isActive }) {
     btn = "Save";
   }
   return (
-    <li className={isActive?'active':undefined}>
+    <li className={isActive ? "active" : undefined}>
       <span className="player">
         {playerName}
         <span className="player-symbol">{symbol}</span>
@@ -26,6 +26,9 @@ export default function Player({ pName = "", symbol,isActive }) {
       <Button
         onClick={() => {
           setIsEditing((prev) => !prev);
+          if (isEditing) {
+            handlePlayerNames(symbol, name);
+          }
         }}
       >
         {btn}
