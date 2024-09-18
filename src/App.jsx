@@ -19,14 +19,7 @@ function findCurrentPlayer(turns) {
   return currentPlayer;
 }
 
-function App() {
-  const [gameTurns, setGameTurns] = useState([]); //   { movePos: { row: "", col: "" }, player: "" }
-  const [players, setPlayers] = useState({
-    X: "Player 1",
-    O: "Player 2",
-  });
-  const activePlayer = findCurrentPlayer(gameTurns);
-  let winner = null;
+function getGameBoard(gameTurns) {
   let gameBoard = [...initialBoard.map((innerArray) => [...innerArray])];
   if (gameTurns.length > 0) {
     for (const turn of gameTurns) {
@@ -35,7 +28,11 @@ function App() {
       gameBoard[row][col] = player;
     }
   }
+  return gameBoard;
+}
 
+function getWinner(gameBoard, players) {
+  let winner = null;
   for (const combinations of WINNING_COMBINATIONS) {
     const firstSquareSymbol =
       gameBoard[combinations[0].row][combinations[0].column];
@@ -52,6 +49,21 @@ function App() {
       winner = players[firstSquareSymbol];
     }
   }
+
+  return winner;
+}
+
+function App() {
+  const [gameTurns, setGameTurns] = useState([]); //   { movePos: { row: "", col: "" }, player: "" }
+  const [players, setPlayers] = useState({
+    X: "Player 1",
+    O: "Player 2",
+  });
+  const activePlayer = findCurrentPlayer(gameTurns);
+
+  const gameBoard = getGameBoard(gameTurns);
+
+  const winner = getWinner(gameBoard, players);
 
   const hasDraw = gameTurns.length === 9 && !winner;
 
