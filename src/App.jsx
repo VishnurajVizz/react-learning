@@ -1,7 +1,14 @@
-import React from "react";
-import Player from "./components/player";
+import React, { useState } from "react";
+import Player from "./components/Player";
+import GameBoard from "./components/GameBoard";
 
 function App() {
+  const [activePlayer, setActivePlayer] = useState("X");
+
+  function handleActivePlayer() {
+    setActivePlayer((prevPlayer) => (prevPlayer === "X" ? "O" : "X"));
+  }
+
   return (
     <>
       <header>
@@ -10,11 +17,22 @@ function App() {
       </header>
       <main>
         <div id="game-container">
-          <ol id="players">
-            <Player pName={"Player 1"} symbol={"X"} />
-            <Player pName={"Player 2"} symbol={"O"} />
+          <ol id="players" className="highlight-player">
+            <Player
+              pName={"Player 1"}
+              symbol={"X"}
+              isActive={activePlayer === "X"}
+            />
+            <Player
+              pName={"Player 2"}
+              symbol={"O"}
+              isActive={activePlayer === "O"}
+            />
           </ol>
-          Game Board
+          <GameBoard
+            handleActivePlayer={handleActivePlayer}
+            activePlayer={activePlayer}
+          />
         </div>
         LOG
       </main>
