@@ -3,8 +3,9 @@ import { Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import Home from "./components/home";
 import BookList from "./components/bookList";
-import Book from "./components/book"
+import Book from "./components/book";
 import NewBook from "./components/newBook";
+import NotFound from "./components/notFound";
 
 function App() {
   return (
@@ -20,10 +21,11 @@ function App() {
         </ol>
       </nav>
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/books" element={<BookList />} />
-        <Route path="books/:id" element={<Book/>}/>
-        <Route path="books/new" element={<NewBook/>}/>
+        <Route path="books/:id" element={<Book />} />
+        <Route path="books/new" element={<NewBook />} />
       </Routes>
     </>
   );
