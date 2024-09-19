@@ -6,6 +6,7 @@ import BookList from "./components/bookList";
 import Book from "./components/book";
 import NewBook from "./components/newBook";
 import NotFound from "./components/notFound";
+import Root from "./components/root";
 
 function App() {
   return (
@@ -20,12 +21,15 @@ function App() {
           </li>
         </ol>
       </nav>
+
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
-        <Route path="/books" element={<BookList />} />
-        <Route path="books/:id" element={<Book />} />
-        <Route path="books/new" element={<NewBook />} />
+        <Route path="/books" element={<Root />}>
+          <Route index element={<BookList />} />
+          <Route path=":id" element={<Book />} />
+          <Route path="new" element={<NewBook />} />
+        </Route>
       </Routes>
     </>
   );
