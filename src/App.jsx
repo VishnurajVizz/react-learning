@@ -1,12 +1,7 @@
-import { useState } from "react";
-import { Route, Routes, Link, useRoutes, useLocation } from "react-router-dom";
+import { Route, Routes, Link, useLocation } from "react-router-dom";
 import "./App.css";
 import Home from "./components/home";
-import BookList from "./components/bookList";
-import Book from "./components/book";
-import NewBook from "./components/newBook";
 import NotFound from "./components/notFound";
-import Root from "./components/root";
 import BookRoutes from "./components/BookRoutes";
 
 function App() {

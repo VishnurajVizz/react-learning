@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Link, Outlet, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const books = [
   {
