@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link, useRoutes } from "react-router-dom";
 import "./App.css";
 import Home from "./components/home";
 import BookList from "./components/bookList";
@@ -10,6 +10,16 @@ import Root from "./components/root";
 import BookRoutes from "./components/BookRoutes";
 
 function App() {
+  let pages = useRoutes([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "*",
+      element: <NotFound />,
+    },
+  ]);
   return (
     <>
       <nav>
@@ -23,11 +33,13 @@ function App() {
         </ol>
       </nav>
 
-      <Routes>
+      {pages}
+
+      {/* <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/books/*" element={<BookRoutes />} />
-      </Routes>
+      </Routes> */}
     </>
   );
 }
