@@ -7,6 +7,7 @@ import Book from "./components/book";
 import NewBook from "./components/newBook";
 import NotFound from "./components/notFound";
 import Root from "./components/root";
+import BookRoutes from "./components/BookRoutes";
 
 function App() {
   return (
@@ -25,11 +26,7 @@ function App() {
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
-        <Route path="/books" element={<Root />}>
-          <Route index element={<BookList />} />
-          <Route path=":id" element={<Book />} />
-          <Route path="new" element={<NewBook />} />
-        </Route>
+        <Route path="/books/*" element={<BookRoutes />} />
       </Routes>
     </>
   );
