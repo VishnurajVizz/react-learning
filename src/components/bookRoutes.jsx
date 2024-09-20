@@ -8,14 +8,22 @@ import Root from "./root";
 export default function BookRoutes() {
   return (
     <>
-      <Root />
+      {/* <Root />
       <Routes>
         <Route index element={<BookList />} />
         <Route path=":id" element={<Book />} />
         <Route path="new" element={<NewBook />} />
-      </Routes>
+      </Routes> */}
 
- 
+      {/* Another way */}
+
+      <Routes>
+        <Route element={<Root />}>
+          <Route index element={<BookList />} />
+          <Route path=":id" element={<Book />} />
+          <Route path="new" element={<NewBook />} />
+        </Route>
+      </Routes>
     </>
   );
 }
