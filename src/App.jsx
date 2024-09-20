@@ -10,16 +10,6 @@ import Root from "./components/root";
 import BookRoutes from "./components/BookRoutes";
 
 function App() {
-  let pages = useRoutes([
-    {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "*",
-      element: <NotFound />,
-    },
-  ]);
   return (
     <>
       <nav>
@@ -33,13 +23,11 @@ function App() {
         </ol>
       </nav>
 
-      {pages}
-
-      {/* <Routes>
+      <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/books/*" element={<BookRoutes />} />
-      </Routes> */}
+      </Routes>
     </>
   );
 }
