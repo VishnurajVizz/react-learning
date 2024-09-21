@@ -1,21 +1,21 @@
-import './App.css'
+import "./App.css";
+import Person from "./Person";
 
 function App() {
+  // const name:string = 'Vizz'
+  // const age:number=23
+  // const isActive:boolean=true
+  // const ratings:number[] = [3,4,5,6]
 
-  let name:string = 'Vizz'
-  let age:number=23
-  let isActive:boolean=true
-  let ratings:number[] = [3,4,5,6]
-
-  let person:any = 3
-  person="Hi"
-  
+  // let person:any = 3
+  // person="Hi"
 
   return (
     <>
-      {name} {age} {isActive} {ratings} {person}
+      <Person name="Vizz" age={23} country="USA" isActive={true} />
+      <Person name="Rox" age={22} isActive={true} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
