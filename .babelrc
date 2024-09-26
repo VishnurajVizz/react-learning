@@ -1,0 +1,11 @@
+{
+    "plugins": [
+      [
+        "@babel/plugin-transform-react-jsx",
+        {
+          "pragma": "Vizz.createElement" // Use custom function instead of React.createElement
+        }
+      ]
+    ]
+  }
+  
