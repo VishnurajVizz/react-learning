@@ -1,15 +1,17 @@
-import classes from './CartItem.module.css';
+import { useDispatch } from "react-redux";
+import classes from "./CartItem.module.css";
+import { increaseItemCount, decreaseItemCount } from "../../slice/cart-slice";
 
 const CartItem = (props) => {
   const { title, quantity, total, price } = props.item;
+  const dispatch = useDispatch();
 
   return (
     <li className={classes.item}>
       <header>
         <h3>{title}</h3>
         <div className={classes.price}>
-          ${total.toFixed(2)}{' '}
-          <span className={classes.itemprice}>(${price.toFixed(2)}/item)</span>
+          ${total} <span className={classes.itemprice}>(${price}/item)</span>
         </div>
       </header>
       <div className={classes.details}>
@@ -17,8 +19,20 @@ const CartItem = (props) => {
           x <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button>-</button>
-          <button>+</button>
+          <button
+            onClick={() => {
+              dispatch(decreaseItemCount(title));
+            }}
+          >
+            -
+          </button>
+          <button
+            onClick={() => {
+              dispatch(increaseItemCount(title));
+            }}
+          >
+            +
+          </button>
         </div>
       </div>
     </li>
